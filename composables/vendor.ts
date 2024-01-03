@@ -7,3 +7,5 @@ export {
   useValidateField,
   useValidateForm,
 } from "vee-validate";
+
+export { useI18n } from "vue-i18n";

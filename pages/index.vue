@@ -8,7 +8,7 @@ import type { AppDropdown } from "#build/components";
   <div>
     <AppDropdown>
       <template>
-        <button class="bg-red-500">Click me</button>
+        <button class="bg-red-500">{{ $t("hello") }}</button>
       </template>
 
       <template #content>
