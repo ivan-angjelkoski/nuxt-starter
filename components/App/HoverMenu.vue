@@ -36,6 +36,22 @@ const { floatingStyles } = useFloating(reference, floating, {
   placement: computed(() => props.placement),
 });
 
+let timeout: NodeJS.Timeout;
+
+function openOnHover() {
+  clearTimeout(timeout);
+  timeout = setTimeout(() => {
+    open.value = true;
+  }, 200);
+}
+
+function closeOnHover() {
+  clearTimeout(timeout);
+  timeout = setTimeout(() => {
+    open.value = false;
+  }, 200);
+}
+
 useEventBus("close").on(() => {
   open.value = false;
 });
@@ -50,11 +66,13 @@ function closeAll() {
     ref="container"
     class="inline-block"
     @keydown.escape="open = false"
+    @mouseenter="openOnHover"
+    @mouseleave="closeOnHover"
   >
     <div
       ref="reference"
       class="inline-block"
-      @click="open = !open"
+      @click="open = true"
     >
       <slot name="trigger">
         <button class="text-white bg-blue-500 p-2 rounded">Trigger</button>
